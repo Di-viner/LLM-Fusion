@@ -15,12 +15,12 @@
 In this work, we organise the three ways of consolidating RLVR-trained domain experts by the artefacts each reuses — **Merge** (task vectors), **Mix RL** (datasets) and **MOPD** (both) — and compare them across model scales with shared experts, data and benchmarks.
 
 <div align="center">
-  <img src="assets/intro.jpg" alt="intro" width="90%">
+  <img src="assets/intro.jpg" alt="intro">
 </div>
 
 ## Highlights
 
-- **A controlled comparison of Merge, Mix RL and MOPD**, with shared experts, data and benchmarks at 4B and 8B.
+- **A controlled comparison of Merge, Mix RL and MOPD**, with shared experts, data and benchmarks.
 - **Why they diverge by domain**: cross-domain relations in behaviour and in task-vector geometry.
 - **What fusion does not buy**: no broader solution coverage, no held-out capability loss.
 - **How to choose**: costs and prerequisites span an order of magnitude.
