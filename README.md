@@ -151,5 +151,4 @@ We build on [verl](https://github.com/verl-project/verl) as our training codebas
 
 ## Citation
 
-<!-- TODO: fill in after the arXiv posting. -->
 
