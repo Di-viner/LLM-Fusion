@@ -47,6 +47,31 @@ BFCL_TEST=${BFCL_TEST:-${EVAL_DATA_ROOT}/BFCL_v3/test-*.parquet}
 
 EVAL_SUITE=${EVAL_SUITE:-"[${AIME2025_TEST},${AIME2026_TEST},${GPQA_TEST},${LCB_V5_TEST},${LCB_V6_TEST},${IFEVAL_TEST},${IFBENCH_TEST},${BFCL_TEST}]"}
 
+# ---- merge ----------------------------------------------------------------
+# Used only by examples/llm_fusion/merge/. The five FSDP actor checkpoints to
+# fuse, as written by the training scripts:
+#   ${OUTPUT_ROOT}/<experiment_name>/global_step_<N>/actor
+# There is no sensible default, so convert_experts_to_hf.sh names whichever of
+# these is unset rather than guessing a step.
+MATH_ACTOR=${MATH_ACTOR:-}
+SCIENCE_ACTOR=${SCIENCE_ACTOR:-}
+CODE_ACTOR=${CODE_ACTOR:-}
+IF_ACTOR=${IF_ACTOR:-}
+AGENT_ACTOR=${AGENT_ACTOR:-}
+
+# fp32 HuggingFace exports of the five experts: written by
+# convert_experts_to_hf.sh, read by run_merge.sh. fp32 rather than bf16 because
+# the RL task vectors are small enough that the round-trip changes the merge --
+# see the note in merge/convert_experts_to_hf.sh. Budget ~15 GB per expert at 4B.
+HF_EXPERTS_ROOT=${HF_EXPERTS_ROOT:-${OUTPUT_ROOT}/merge/hf_experts_fp32}
+
+# Merged models land in ${MERGE_OUT_ROOT}/merged_models/<method>, logs in
+# ${MERGE_OUT_ROOT}/save_merge_llm_logs/<method>.
+MERGE_OUT_ROOT=${MERGE_OUT_ROOT:-${OUTPUT_ROOT}/merge}
+
+# The vendored MergeLM that produced every Merge result in the paper.
+MERGELM=${MERGELM:-$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)/third_party/MergeLM}
+
 # ---- tool config ----------------------------------------------------------
 # Tool schemas for the multi-turn agent rollout (WorkBench + BFCL v3 backends).
 # Regenerate with verl/utils/bfcl_multiturn/generate_tool_config.py if you

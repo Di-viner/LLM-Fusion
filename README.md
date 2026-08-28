@@ -103,7 +103,19 @@ done
 
 ## Merge
 
-We will release the Merge scripts as soon as possible — stay tuned!
+Two steps: export the experts in fp32, then fuse their task vectors.
+
+```bash
+# 1. FSDP checkpoints -> fp32 HF experts, one per domain
+export MATH_ACTOR=${OUTPUT_ROOT}/<experiment>/global_step_<N>/actor   # likewise SCIENCE_ACTOR, CODE_ACTOR, IF_ACTOR, AGENT_ACTOR
+bash examples/llm_fusion/merge/convert_experts_to_hf.sh
+
+# 2. fuse the task vectors. The defaults reproduce the released checkpoint
+bash examples/llm_fusion/merge/run_merge.sh
+```
+
+Step 1 exists because the merge needs fp32 inputs to keep the task vectors at full precision, and verl's `model_merger` casts to bf16. The bf16 experts on the Hub therefore cannot be used as merge inputs.
+
 
 ## Evaluation
 
