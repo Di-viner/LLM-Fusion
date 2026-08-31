@@ -6,7 +6,7 @@
 
 <div align="center">
 
-[![Paper](https://img.shields.io/badge/Paper-arXiv-b5212f.svg?logo=arxiv)](https://arxiv.org/)
+[![Paper](https://img.shields.io/badge/Paper-arXiv-b5212f.svg?logo=arxiv)](https://arxiv.org/abs/2608.27409)
 [![HuggingFace](https://img.shields.io/badge/Model-HuggingFace-ffd21e.svg?logo=huggingface)](https://huggingface.co/collections/Siye01/llm-fusion)
 
 </div>
@@ -162,5 +162,12 @@ Siye01/Qwen3-8B-NT-<name>        # Qwen3-8B non-thinking backbone
 We build on [verl](https://github.com/verl-project/verl) as our training codebase, and we thank [M2RL](https://github.com/Mosi-AI/M2RL), whose study of multi-domain RLVR inspired this work.
 
 ## Citation
-
+```bibtex
+@article{wu2026consolidating,
+  title={Consolidating RLVR Capabilities Across Domains: A Deep Dive into Fusion Paradigms},
+  author={Wu, Siye and Yang, Kai and Cai, Yuchen and Xu, Xin and Wang, Peng-Yuan and Wang, Jiaxuan and Liu, Jiashun and Lyu, Jiafei and Chen, Yangkun and Yang, Saiyong and others},
+  journal={arXiv preprint arXiv:2608.27409},
+  year={2026}
+}
+```
 
